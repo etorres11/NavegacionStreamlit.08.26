@@ -1,8 +1,8 @@
-import streamlit as st  # Importa Streamlit para construir la calculadora.
-st.title("Calculadora API")  # Muestra el título principal de la página.
-sg = st.number_input("Gravedad específica", value=0.85)  # Permite ingresar la gravedad específica.
-if st.button("Calcular"):  # Ejecuta el cálculo cuando el botón es presionado.
-    api = (141.5 / sg) - 131.5  # Calcula el grado API a partir del valor ingresado.
-    st.success(f"{api:.2f} °API")  # Presenta el resultado calculado.
-if st.button("Regresar"):  # Comprueba si el usuario desea volver al inicio.
-    st.switch_page("inicio.py")  # Cambia programáticamente hacia la página de inicio.
+import streamlit as st  # Importa Streamlit para recuperar el estado de sesión.
+st.title("Resultado")  # Muestra el título de la página de resultados.
+sg = st.session_state.get("sg", 0.85)  # Recupera sg guardado o utiliza 0.85 si todavía no existe.
+api = (141.5 / sg) - 131.5  # Calcula el grado API con el valor conservado entre páginas.
+st.metric("Grado API", f"{api:.2f} °API")  # Presenta el resultado mediante un widget métrico.
+st.write("SG conservada:", sg)  # Confirma visualmente el valor que viajó entre páginas.
+if st.button("Modificar dato"):  # Comprueba si el usuario quiere regresar a editar el valor.
+    st.switch_page("inicio.py")  # Regresa a la página de ingreso manteniendo session_state.
