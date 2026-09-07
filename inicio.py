@@ -1,5 +1,6 @@
-import streamlit as st  # Importa Streamlit para crear la interfaz de inicio.
-st.title("Inicio")  # Muestra el encabezado principal.
-st.write("Ahora la navegación puede activarse desde Python.")  # Introduce el propósito de st.switch_page.
-if st.button("Abrir calculadora"):  # Comprueba si el usuario presionó el botón.
-    st.switch_page("api.py")  # Cambia programáticamente desde Inicio hacia la página api.py.
+import streamlit as st  # Importa Streamlit para trabajar con widgets y estado de sesión.
+st.title("Ingreso de datos")  # Muestra el título de la página actual.
+if "sg" not in st.session_state: st.session_state.sg = 0.85  # Crea sg en session_state solamente si todavía no existe.
+st.session_state.sg = st.number_input("Gravedad específica", value=st.session_state.sg)  # Actualiza y conserva el valor de sg en la sesión.
+if st.button("Calcular en otra página"):  # Detecta si el usuario desea continuar hacia el resultado.
+    st.switch_page("api.py")  # Cambia de página sin perder el dato almacenado en session_state.
