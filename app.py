@@ -1,5 +1,6 @@
 import streamlit as st  # Importa la librería Streamlit con el alias st.
-inicio = st.Page("inicio.py")  # Convierte inicio.py en una página de la aplicación.
-api = st.Page("api.py")  # Convierte api.py en otra página de la aplicación.
-pagina = st.navigation([inicio, api])  # Crea el menú de navegación con las dos páginas.
-pagina.run()  # Ejecuta la página que el usuario haya seleccionado.
+inicio = st.Page("inicio.py", title="Inicio", icon="🏠", default=True)  # Define la página inicial con título, ícono y estado predeterminado.
+api = st.Page("api.py", title="Grado API", icon="🛢️")  # Define la página de cálculo con un título e ícono personalizados.
+pagina = st.navigation([inicio, api])  # Organiza las páginas dentro del menú automático de Streamlit.
+pagina.run()  # Ejecuta únicamente la página seleccionada por el usuario.
+
